@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_students_details">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <table class="table table-condensed" >
+                        <tr>
+                            <td>
+                                <span>HOD :</span>
+                            </td>
+                            <td>
+                                <span t-field="o.sir_id"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Name :</span>
+                            </td>
+                            <td>
+                                <span t-field="o.name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Age :</span>
+                            </td>
+                            <td>
+                                <span t-field="o.age"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Branch :</span>
+                            </td>
+                            <td>
+                                <span t-field="o.branch"/>
+                            </td>
+                        </tr>
+                    </table>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

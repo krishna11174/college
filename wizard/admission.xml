@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<!--    <record id="student_adm_view_form" model="ir.ui.view">-->
+<!--        <field name="name">student_adm_wizard</field>-->
+<!--        <field name="model">admission.student</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form>-->
+<!--                <group>-->
+<!--                    <field name="nam"/>-->
+<!--                </group>-->
+<!--                <footer>-->
+<!--                    <button string="Cancel" class="btn-secondary" special="cancel"/>-->
+<!--                </footer>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    <record id="student_admission_action" model="ir.actions.act_window">-->
+<!--        <field name="name">Student_Admision</field>-->
+<!--        <field name="type">ir.actions.act_window</field>-->
+<!--        <field name="res_model">admission.student</field>-->
+<!--        <field name="view_mode">form</field>-->
+<!--        <field name="view_id" ref="student_adm_view_form"/>-->
+<!--        <field name="target">new</field>-->
+<!--    </record>-->
+</odoo>

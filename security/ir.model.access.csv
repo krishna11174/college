@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_svist_students,access.svist.students,model_svist_students,base.group_user,1,1,1,1
+access_svist_hod,access.svist.hod,model_svist_hod,base.group_user,1,1,1,1
+access_svistfee_details,access.svistfee.details,model_svistfee_details,base.group_user,1,1,1,1
+access_svist_materials,access.svist.materials,model_svist_materials,base.group_user,1,1,1,1
+access_student_materials,access.student.materials,model_student_materials,base.group_user,1,1,1,1
+access_admission_student,access.admission.student,model_admission_student,base.group_user,1,1,1,1
+access_studentadm_svist,access.studentadm.svist,model_studentadm_svist,base.group_user,1,1,1,1
+access_relation,access.relation,model_relation,base.group_user,1,1,1,1
+

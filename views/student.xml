@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="Student_tree" model="ir.ui.view">
+        <field name="name">Student.Details.tree</field>
+        <field name="model">svist.students</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state=='done'"
+                  decoration-info="state=='draft'"
+                  decoration-warning="state=='in_progress'"
+                  decoration-danger="state=='cancel'">
+                <field name="adm"/>
+                <field name="name"/>
+                <field name="branch"/>
+                <field name="state"
+                       decoration-success="state=='done'"
+                       decoration-info="state=='draft'"
+                       decoration-warning="state=='in_progress'"
+                       decoration-danger="state=='cancel'"
+                       widget="badge"
+                />
+                <field name="sir_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--student details in form view-->
+    <record id="Student_form" model="ir.ui.view">
+        <field name="name">Student.Details.form</field>
+        <field name="model">svist.students</field>
+        <field name="arch" type="xml">
+            <form>
+                <!--                STATUS BAR-->
+                <!--                stages-->
+                <header>
+                    <button name="search_method" string="Search" type="object"/>
+                    <button name="button_inprogress" string="In Progress" class="btn-primary"
+                            type="object" states="draft"/>
+                    <button name="button_confirm" string="Confrim" class="btn-primary" type="object"
+                            states="in_progress"/>
+                    <button name="button_done" string="Mark As Done" class="btn-primary" type="object"
+                            states="confirm"/>
+                    <button name="button_draft" string="Draft" class="btn-primary" type="object"
+                            states="cancel"/>
+                    <button name="button_cancel" string="Cancel" type="object"
+                            states="done"/>
+                    <button name="%(action_creat_admission)d" string="Wiz" type="action"/>
+                    <button name="button_type_wizard" string="ObjWiz" type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="confirm, done, in_progress, draft"/>
+                </header>
+                <sheet>
+                    <field name="image"  widget='image' class="oe_avatar"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="total_due" type="object" class="oe_stat_button" icon="fa-calendar">
+                            <div class="o_stat_info">
+                                <field name="faculty" class="o_stat_value"/>
+                                <span class="o_stat_text">Total Hod's</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div>
+                        <h1>
+                            <field name="adm"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="sir_id"/>
+                        </group>
+                        <group>
+                            <field name="joining_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="age"/>
+                            <field name="dob"/>
+                            <field name="gender"/>
+                            <field name="branch"/>
+                            <field name="faculty_ids" widget="many2many_tags"/>
+                            <field name="faculty"/>
+                        </group>
+                        <group>
+                            <field name="father_name"/>
+                            <field name="mother_name"/>
+                            <field name="father_occupation"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="address"/>
+                        <field name="fees"/>
+                    </group>
+                    <group>
+                        <!--                   < MANY TO ONE     -->
+                        <notebook>
+                            <page string="Books" name="books">
+                                <group>
+                                    <field name="book_ids">
+                                        <tree editable="bottom">
+                                            <field name="sl_no" readonly="1"/>
+                                            <field name="books_ids"/>
+                                            <field name="books_set"/>
+                                            <field name="books_price"/>
+                                        </tree>
+                                        <form>
+                                            <field name="books_ids"/>
+                                            <field name="books_set"/>
+                                            <field name="books_price"/>
+                                        </form>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <!--    search view-->
+    <record id="Svist_students_search" model="ir.ui.view">
+        <field name="name">Svist.students.search</field>
+        <field name="model">svist.students</field>
+        <field name="arch" type="xml">
+            <search string="Student">
+                <field name="name"/>
+                <field name="branch"/>
+                <filter name="gender" string="Male" domain="[('gender', '=', 'male')]"/>
+                <separator/>
+                <filter name="gender" string="Female" domain="[('gender', '=', 'female')]"/>
+                <!--                <separator/>-->
+                <!--                <filter name="branch" string="EEE" domain="[('branch', '=', 'eee')]"/>-->
+                <!--                <separator/>-->
+                <!--                <filter name="branch" string="ECE" domain="[('branch', '=', 'ece')]"/>-->
+                <!--                <separator/>-->
+                <!--                <filter name="branch" string="MECH" domain="[('branch', '=', 'mech')]"/>-->
+                <!--                <separator/>-->
+                <!--                <filter name="branch" string="CE" domain="[('branch', '=', 'civil')]"/>-->
+                <!--                <separator/>-->
+                <!--                <filter name="branch" string="CSE" domain="[('branch', '=', 'cse')]"/>-->
+                <group expand="2" string="Group By">
+                    <filter string="Group" name="branch" context="{'group_by':'branch'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!--Kanbuan view-->
+
+    <record model="ir.ui.view" id="view_student_detail_kanban">
+        <field name="name">student.detail.kanban</field>
+        <field name="model">svist.students</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" sample="1">
+                <field name="name"/>
+                <field name="branch"/>
+                <field name="age"/>
+                <field name="fees"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="oe_kanban_global_details">
+                                <ul>
+                                    <li>
+                                        Name :
+                                        <field name="name"/>
+                                    </li>
+                                    <li>
+                                        Branch :
+                                        <field name="branch"/>
+                                    </li>
+                                    <li>
+                                        Age :
+                                        <field name="age"/>
+                                    </li>
+                                    <li>
+                                        Fees :
+                                        <field name="fees"/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="student" model="ir.actions.act_window">
+        <field name="name">Student details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">svist.students</field>
+        <field name="view_mode">tree,form,kanban,search</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Well come to Our College.
+            </p>
+            <p>
+                Admission are open.
+            </p>
+        </field>
+    </record>
+
+    <!--Top Menu-->
+    <menuitem id="svist_root"
+              name="SVIST"
+              sequence="10"/>
+
+    <menuitem id="svist_student_root"
+              parent="svist_root"
+              name="Student"
+              sequence="10"/>
+
+    <menuitem id="svist_student"
+              parent="svist_student_root"
+              name="Student details"
+              action="student"
+              sequence="10"/>
+
+    <menuitem id="svist_adm"
+              parent="svist_student_root"
+              name="Student Admission"
+              action="action_creat_admission"
+              sequence="10"/>
+
+</odoo>

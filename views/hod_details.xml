@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <record id="hod_details_tree" model="ir.ui.view">
+        <field name="name">Hod.Details.tree</field>
+        <field name="model">svist.hod</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="hod_name"/>
+                <field name="hod_exp"/>
+                <field name="hod_qulification"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hod_details_form" model="ir.ui.view">
+        <field name="name">hod.details.form</field>
+        <field name="model">svist.hod</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="hod_name"/>
+                        <field name="hod_exp"/>
+                        <field name="hod_qulification"/>
+                        <field name="product_id"/>
+                    </group>
+                    <group>
+                        <notebook>
+                            <page string="Books" name="books">
+                                <group>
+                                    <field name="sir_id">
+                                        <tree editable="bottom">
+                                            <field name="product_id"/>
+                                            <field name="product_qty"/>
+<!--                                            <field name="books_price"/>-->
+                                        </tree>
+<!--                                        <form>-->
+<!--                                            <field name="books_ids"/>-->
+<!--                                            <field name="books_set"/>-->
+<!--                                            <field name="books_price"/>-->
+<!--                                        </form>-->
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="hod_detail" model="ir.actions.act_window">
+        <field name="name">Hod_details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">svist.hod</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new HOD Details
+            </p>
+        </field>
+    </record>
+    <menuitem id="svist_hod_root"
+              parent="svist_root"
+              name="HOD"
+              action="hod_detail"
+              sequence="10"/>
+</odoo>

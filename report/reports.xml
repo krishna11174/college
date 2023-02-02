@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="report_student_details" model="ir.actions.report">
+        <field name="name">Student Detailss</field>
+        <field name="model">svist.students</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">College.report_students_details</field>
+        <field name="report_file">College.report_students_details</field>
+        <field name="binding_model_id" ref="model_svist_students"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_student_details1" model="ir.actions.report">
+        <field name="name">Student Card</field>
+        <field name="model">svist.students</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">College.report_students_1</field>
+        <field name="report_file">College.report_students_1</field>
+        <field name="binding_model_id" ref="model_svist_students"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_student_xls" model="ir.actions.report">
+        <field name="name">Student XLSX</field>
+        <field name="model">svist.students</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">college.reports_xlsx</field>
+        <field name="report_file">college.reports_xlsx</field>
+        <field name="binding_model_id" ref="model_svist_students"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="studfee_tree" model="ir.ui.view">
+        <field name="name">Student_fee_tree</field>
+        <field name="model">svistfee.details</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="fees"/>
+                <field name="day"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="fee_detail" model="ir.actions.act_window">
+        <field name="name">fee_details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">svistfee.details</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Fee Payments
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem id="fee_root"
+              name="Fees Payment"
+              parent="svist_root"
+              sequence="10"/>
+
+    <menuitem id="student_fee_root"
+              name="Students Fee"
+              parent="fee_root"
+              action="fee_detail"
+              sequence="10"/>
+
+<!--    <menuitem id="admission_root"-->
+<!--              name="Creat Admission"-->
+<!--              parent="fee_root"-->
+<!--              action="creating_admission_form"-->
+<!--              sequence="10"/>-->
+
+</odoo>
