@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+        <record id="inventory_approval_access" model="res.groups">
+			<field name="name">Inventory Approval User</field>
+			<field name="category_id" ref="base.module_category_operations_inventory" />
+        </record>
+
+         <record id="product_cost_update" model="res.groups">
+			<field name="name">Update product Cost</field>
+			<field name="category_id" ref="base.module_category_products" />
+        </record>
+    </data>
+</odoo>

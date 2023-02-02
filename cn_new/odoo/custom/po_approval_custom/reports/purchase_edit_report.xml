@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="purchase_edit_inherit" inherit_id="purchase.report_purchasequotation_document">
+        <xpath expr="//div[@t-field='o.partner_id']" position="before">
+            <div class="oe_structure" id="Description">
+                <div class="col-auto mw-100 mb-2">
+                    <strong>Company:</strong>
+                    <div t-field="o.company_partner"/>
+                </div>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[@class='oe_structure']" position="before">
+            <td>
+<!--                <img t-attf-src="/home/yashas/odoo-13.0/odoo-primeminds/purchase_edit_report/red.png" height="50" width="50"/>-->
+                <div class="col-3 mb4">
+                    <img t-if="o.company_partner.logo" t-att-src="image_data_uri(o.company_partner.logo)" style="max-height:90px;" alt="Logo"/>
+                </div>
+            </td>
+        </xpath>
+    </template>
+</odoo>

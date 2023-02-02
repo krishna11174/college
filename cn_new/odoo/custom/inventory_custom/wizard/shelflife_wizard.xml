@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="shelflife_warning_form" model="ir.ui.view">
+        <field name="name">sshelflife.warning.form</field>
+        <field name="model">shelflife.warning</field>
+        <field name="arch" type="xml">
+            <form string="Shelf Life">
+                <sheet>
+                    <field name="name" readonly="1"/>
+                </sheet>
+                <footer>
+                    <group>
+                        <span>
+                            <button string="Yes" type="object" class="oe_highlight" name="shelf_ok"/>
+                            <button string="Cancel" class="oe_link" special="cancel" />
+                        </span>
+                    </group>
+                </footer>
+            </form>
+
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+   
+    <record id="fcv_view_form" model="ir.ui.view">
+        <field name="name">fcv.report.form</field>
+        <field name="model">fcv.report</field>
+        <field name="arch" type="xml">
+            <form string="FCV Report">
+              <sheet>
+                 <group >
+                    <group string="Dates">
+                        <field name="fcv_printed" invisible="1"/> 
+                        <field name="date_start" attrs="{'invisible':[('fcv_printed','=',True)]}"/>
+                        <field name="date_end" attrs="{'invisible':[('fcv_printed','=',True)]}"/>
+                        <field name="warehouse_id" attrs="{'invisible':[('fcv_printed','=',True)]}"/>
+                        
+                        <field name="file_name" invisible="1"/>
+                        <field name="fcv_report" readonly="1" filename="file_name"/>                
+                    </group>  
+
+                    </group>
+              </sheet>
+                  
+              <footer>
+                <button string="Count" type="object" name="generate_report" class="oe_highlight"/>
+                <button string="Cancel" special="cancel" type="object" class="btn btn-secondary oe_inline"/>
+              </footer>
+            </form>
+        </field>
+    </record>
+
+
+
+
+
+
+    <record id="action_for_fcv" model="ir.actions.act_window">
+        <field name="name">FCV</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">fcv.report</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="fcv_view_form"/>
+        <field name="target">new</field>
+    </record>
+
+       <menuitem id="menu_fcv_action" 
+        action="action_for_fcv"
+        parent="stock.menu_warehouse_report"/>
+       
+</odoo>

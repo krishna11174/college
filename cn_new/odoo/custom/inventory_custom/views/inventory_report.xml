@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <record id="view_stock_quant_tree_editable_inherit_value" model="ir.ui.view">
+        <field name="name">stock.quant.tree.editable.inherit.value</field>
+        <field name="model">stock.quant</field>
+         <field name ="inherit_id" ref="stock.view_stock_quant_tree_editable"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='package_id']" position="after">
+               <field name="avg_consumption"/>
+               <field name="critical_stock" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='life_date']" position="after">
+               <field name="batch_number" invisible="1"/>
+<!--               <field name="batch_number" optional="show"/>-->
+               <field name="manufacture_date"/>
+               <field name="expiry_date"/>
+            </xpath>
+            <xpath expr="//field[@name='life_date']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='warehouse_id']" position="after">
+               <field name="company_id" string="Company Name"/>
+            </xpath>
+        </field>
+    </record>
+     <record id="product_supplierinfo_tree_view_inherit_view" model="ir.ui.view">
+        <field name="name">product.supplierinfo.tree.view.inherit.value</field>
+        <field name="model">product.supplierinfo</field>
+         <field name ="inherit_id" ref="product.product_supplierinfo_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+               <field name="product_brand_id"/>
+               <field name="city_id"/>
+            </xpath>
+            <xpath expr="//field[@name='product_code']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='product_name']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='min_qty']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

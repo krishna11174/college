@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="curefit_delivery_slip_page_format" model="report.paperformat">
+            <field name="name">Curefit delivery slip page format</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">30</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">2</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <report
+            string="Delivery Slip"
+            id="action_report_delivery"
+            model="stock.picking"
+            report_type="qweb-pdf"
+            name="stock.report_deliveryslip"
+            file="stock.report_deliveryslip"
+            print_report_name="'Delivery Slip - %s - %s' % (object.partner_id.name or '', object.name)"
+            menu="False"
+        />
+
+        <report
+                id="curefit_delivery_slip"
+                model="stock.picking"
+                string="Delivery Slip"
+                report_type="qweb-pdf"
+                name="odoov13_5.delivery_slip"
+                file="odoov13_5.delivery_slip"
+                print_report_name="'Delivery Slip - %s - %s' % (object.partner_id.name or '', object.name)"
+                attachment="('Delivery Slip-'+(object.name or '').replace('/','_')+'.pdf')"
+                paperformat="odoov13_5.curefit_delivery_slip_page_format"
+            />
+      
+      
+        <template id="delivery_slip">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="odoov13_5.external_layout_standard_curefit">
+                        <div class="page" style="font-size:15px;">
+                            <table name="curefit_delivery_slip_head">
+                                <tr>
+                                    <td colspan="2" style="width:100%;">
+                                        <span>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:80%;">
+                                        <strong>Site:</strong>
+                                        <t t-if="o.partner_id.name">
+                                            <span t-field="o.partner_id.name"/>
+                                        </t>
+                                    </td>
+                                    <td style="width:20%;">
+                                        <strong>GSTN No:</strong>
+                                        <t t-if="o.partner_id.vat">
+                                            <span t-field="o.partner_id.vat"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:80%;">
+                                        <strong>Email:</strong>
+                                        <t t-if="o.partner_id.email">
+                                            <span t-field="o.partner_id.email"/>
+                                        </t>
+                                    </td>
+                                    <td style="width:20%;">
+                                        <strong>Phone:</strong>
+                                        <t t-if="o.partner_id.phone">
+                                            <span t-field="o.partner_id.phone"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="width:100%;">
+                                        <strong>Site Address:</strong>
+                                        <span t-if="o.partner_id.street" t-field="o.partner_id.street"/>,
+                                        <span t-if="o.partner_id.street2" t-field="o.partner_id.street2"/>,
+                                        <span t-if="o.partner_id.city" t-field="o.partner_id.city"/>,
+                                        <span t-if="o.partner_id.state_id" t-field="o.partner_id.state_id"/>,
+                                        <span t-if="o.partner_id.zip" t-field="o.partner_id.zip"/>,
+                                        <span t-if="o.partner_id.country_id" t-field="o.partner_id.country_id"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="width:100%;">
+                                        <span>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+                                    </td>
+                                </tr>
+
+<!-- ======================================================================================================================================= -->
+<!-- ======================================================================================================================================= -->
+
+                                <tr>
+                                    <td style="width:80%;">
+                                        <strong>Supplier:</strong>
+                                        <t t-if="o.picking_type_id.warehouse_id.name">
+                                            <span t-field="o.picking_type_id.warehouse_id.name"/>
+                                        </t>
+                                    </td>
+                                    <td style="width:20%;">
+                                        <strong>GSTN No:</strong>
+                                        <t t-if="o.picking_type_id.warehouse_id.partner_id.vat">
+                                            <span t-field="o.picking_type_id.warehouse_id.partner_id.vat"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:80%;">
+                                        <strong>Email:</strong>
+                                        <t t-if="o.picking_type_id.warehouse_id.partner_id.email">
+                                            <span t-field="o.picking_type_id.warehouse_id.partner_id.email"/>
+                                        </t>
+                                    </td>
+                                    <td style="width:20%;">
+                                        <strong>Phone:</strong>
+                                        <t t-if="o.picking_type_id.warehouse_id.partner_id.phone">
+                                            <span t-field="o.picking_type_id.warehouse_id.partner_id.phone"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="width:100%;">
+                                        <strong>Supplier Address:</strong>
+                                        <span t-if="o.picking_type_id.warehouse_id.partner_id.street" t-field="o.picking_type_id.warehouse_id.partner_id.street"/>,
+                                        <span t-if="o.picking_type_id.warehouse_id.partner_id.street2" t-field="o.picking_type_id.warehouse_id.partner_id.street2"/>,
+                                        <span t-if="o.picking_type_id.warehouse_id.partner_id.city" t-field="o.picking_type_id.warehouse_id.partner_id.city"/>,
+                                        <span t-if="o.picking_type_id.warehouse_id.partner_id.state_id" t-field="o.picking_type_id.warehouse_id.partner_id.state_id"/>,
+                                        <span t-if="o.picking_type_id.warehouse_id.partner_id.zip" t-field="o.picking_type_id.warehouse_id.partner_id.zip"/>,
+                                        <span t-if="o.picking_type_id.warehouse_id.partner_id.country_id" t-field="o.picking_type_id.warehouse_id.partner_id.country_id"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="width:100%;">
+                                        <span>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+                                    </td>
+                                </tr>
+
+<!-- ======================================================================================================================================= -->
+<!-- ======================================================================================================================================= -->
+
+                                <tr>
+                                    <td style="width:80%;">
+                                        <strong>TO.No.:</strong>
+                                        <t t-if="o.name">
+                                            <span t-field="o.name"/>
+                                        </t>
+                                    </td>
+                                    <td style="width:20%;">
+                                        <strong>TO Date:</strong>
+                                        <t t-if="o.date_done">
+                                            <span t-esc="o.date_done.date()"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:80%;">
+                                        <strong>PO.No.:</strong>
+                                        <t t-if="o.origin">
+                                            <span t-esc="o.env['sale.order'].search([('name','=',o.origin)],limit=1).name"/>
+                                        </t>
+                                    </td>
+                                    <td style="width:20%;">
+                                        <strong>PO Date:</strong>
+                                        <t t-if="o.origin">
+                                            <span t-esc="o.env['sale.order'].search([('name','=',o.origin)],limit=1).date_order.date()"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="width:100%;">
+                                        <strong>Creation Time:</strong>
+                                        <t t-if="o.origin">
+                                            <span t-esc="o.env['sale.order'].search([('name','=',o.origin)],limit=1).date_order"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="width:100%;">
+                                        <span>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <t t-set="items" t-value="0"/>
+                            <table name="curefit_delivery_slip_table" style="margin-top:10px;margin-bottom:10px;">
+                                <tr>
+                                    <td style="width:60%;">
+                                        <strong>Item Name</strong>
+                                    </td>
+                                    <td style="width:10%;">
+                                        <strong>HSN Code</strong>
+                                    </td>
+                                    <td style="width:10%;">
+                                        <strong>Po Qty</strong>
+                                    </td>
+                                    <td style="width:10%;">
+                                        <strong>QTY</strong>
+                                    </td>
+                                    <td style="width:10%;">
+                                        <strong>Unit</strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" style="width:100%;">
+                                        <strong>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------</strong>
+                                    </td>
+                                </tr>
+                                <t t-foreach="o.move_ids_without_package" t-as="line">
+                                    <t t-set="items" t-value="items+1"/>
+                                    <tr>
+                                        <td style="width:60%;">
+                                            <span t-field="line.product_id.name"/>
+                                        </td>
+                                        <td style="width:10%;">
+                                            <span t-field="line.product_id.product_tmpl_id.z_hsn_code"/>
+                                        </td>
+                                        <td style="width:10%;">
+                                            <span t-field="o.env['sale.order.line'].search([('order_id.name','=',o.origin),('product_id','=',line.product_id.id)],limit=1).product_uom_qty"/>
+                                        </td>
+                                        <td style="width:10%;">
+                                            <span t-field="line.quantity_done"/>
+                                        </td>
+                                        <td style="width:10%;">
+                                            <span t-field="line.product_uom.name"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </table>
+
+<!-- ======================================================================================================================================= -->
+<!-- ======================================================================================================================================= -->
+
+                            <table name="curefit_delivery_slip_foot">
+                                <tr>
+                                    <td colspan="2" style="width:100%;">
+                                        <span>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="width:100%;">
+                                        <strong>Total Items:</strong>
+                                        <t t-esc="items"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="width:100%;">
+                                        <strong>Driver Name:</strong>
+                                        <t t-if="o.z_driver">
+                                            <span t-field="o.z_driver"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:60%;">
+                                        <strong>Contact Number:</strong>
+                                        <t t-if="o.z_contact">
+                                            <span t-field="o.z_contact"/>
+                                        </t>
+                                    </td>
+                                    <td style="width:40%;">
+                                        <strong>Vehicle Number:</strong>
+                                        <t t-if="o.z_vehicle">
+                                            <span t-field="o.z_vehicle"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:60%;">
+                                        <strong>Dispatch time:</strong>
+                                        <t t-if="o.z_dispatch">
+                                            <span t-field="o.z_dispatch"/>
+                                        </t>
+                                    </td>
+                                    <td style="width:40%;">
+                                        <strong>Delivery time:</strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="width:100%;">
+                                        <strong>Time at which café manager reached the outlet:</strong>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

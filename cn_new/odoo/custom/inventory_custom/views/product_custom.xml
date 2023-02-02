@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_template_only_form_view_cost_inherit" model="ir.ui.view">
+        <field name="name">product.template.cost.inherit</field>
+        <field name="model">product.template</field>
+         <field name ="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='%(stock_account.action_view_change_standard_price)d']" position="attributes">
+               <attribute name="invisible">1</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="product_template_only_form_view_cost_user_inherit" model="ir.ui.view">
+        <field name="name">product.template.cost.user.inherit</field>
+        <field name="model">product.template</field>
+         <field name ="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="groups_id" eval="[(4, ref('inventory_custom.product_cost_update'))]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='%(stock_account.action_view_change_standard_price)d']" position="attributes">
+               <attribute name="invisible">0</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,9 @@
+Searching 13 files for "bill_number"
+
+/home/test/Music/odoo-curefit/odoo/curefit_L/addons/odoov13_16/models/stock_picking.py:
+   18:     bill_number = fields.Char()
+
+/home/test/Music/odoo-curefit/odoo/curefit_L/addons/odoov13_16/views/stock_picking.xml:
+   18:         					<field name="bill_number" attrs="{'required': [('from_po', '=', True)]}"/>
+
+2 matches across 2 files

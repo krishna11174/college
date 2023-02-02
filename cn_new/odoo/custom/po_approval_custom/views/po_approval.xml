@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <record id="purchase_approval_matrix_form_view_inherit" model="ir.ui.view">
+        <field name="name">purchase.approval.matrix.form.view.inherit</field>
+        <field name="model">purchase.approval.matrix</field>
+         <field name ="inherit_id" ref="odoov13_17.purchase_approval_matrix_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="after">
+                <notebook>
+                    <page name="matrix_line" string="Value/Users">
+                        <field name="matrix_line">
+                            <tree string="Matrix Lines" editable="bottom">
+                                <field name="min_value"/>
+                                <field name="max_value"/>
+                                <field name="user_ids" widget="many2many_tags"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+            <xpath expr="//field[@name='value']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='user_ids']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="purchase_order_form_view_inherit_company" model="ir.ui.view">
+        <field name="name">purchase.order.form.view.inherit.company</field>
+        <field name="model">purchase.order</field>
+         <field name ="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_order']" position="after">
+                <field name="company_partner" required="1"/>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="po_approved_by" required="0" invisible="0" readonly="1"/>
+             </xpath>
+        </field>
+    </record>
+</odoo>

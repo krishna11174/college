@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    <record id="view_picking_form_alert_inherit" model="ir.ui.view">-->
+<!--        <field name="name">stock.picking.alert.inherit</field>-->
+<!--        <field name="model">stock.picking</field>-->
+<!--         <field name ="inherit_id" ref="stock.view_picking_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//button[@name='button_validate']" position="after">-->
+<!--                <button name="button_validate_shelf_life"-->
+<!--                        string="Validate Shelf life"-->
+<!--                         attrs="{'invisible': [('shelf_life_validated', '=', True)]}"-->
+<!--                        type="object" groups="stock.group_stock_user" class="o_btn_validate"/>-->
+<!--                <button name="edit_shelf_life" string="Edit Shelf Life" type="object" attrs="{'invisible': ['|', ('shelf_life_validated', '=', False), ('state', '=', 'done')]}"/>-->
+<!--            </xpath>-->
+<!--             <xpath expr="//field[@name='origin']" position="after">-->
+<!--                <field name="shelf_life_validated" required="0" invisible="1"/>-->
+<!--             </xpath>-->
+<!--            <xpath expr="//button[@name='button_validate']" position="attributes">-->
+<!--               <attribute name="attrs">{'invisible': ['|', ('shelf_life_validated', '=', False), ('state', '=', 'done')]}</attribute>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+    <record id="product_category_form_view_inherit" model="ir.ui.view">
+        <field name="name">product.category.form.inherit</field>
+        <field name="model">product.category</field>
+         <field name ="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+             <xpath expr="//field[@name='parent_id']" position="after">
+                <field name="shelf_life_pursuable" required="0" invisible="0"/>
+             </xpath>
+        </field>
+    </record>
+</odoo>

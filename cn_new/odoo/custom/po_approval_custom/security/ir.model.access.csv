@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purchase_approval_matrix_line_base,access.purchase.approval.matrix.line.base,model_purchase_approval_matrix_line,base.group_user,1,0,0,0
+access_purchase_approval_matrix_line,access.purchase.approval.matrix.line,model_purchase_approval_matrix_line,po_approval_custom.po_approval_access,1,1,1,1
+access_company_data,access.company.data,model_company_data,,1,1,1,1
+odoov13_17.access_purchase_approval_matrix,access.purchase.approval.matrix,odoov13_17.model_purchase_approval_matrix,base.group_user,1,0,0,0
+access_purchase_approval_matrix_po,access.purchase.approval.matrix.po,odoov13_17.model_purchase_approval_matrix,po_approval_custom.po_approval_access,1,1,1,1
+

@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_inventory_matrix,access.inventory.matrix,model_inventory_matrix,base.group_user,1,0,0,0
+access_inventory_matrix_inv,access.inventory.matrix.inv,model_inventory_matrix,inventory_custom.inventory_approval_access,1,1,1,1
+access_inventory_matrix_line,access.inventory.matrix.line,model_inventory_matrix_line,base.group_user,1,0,0,0
+access_inventory_matrix_line_inv,access.inventory.matrix.line.inv,model_inventory_matrix_line,inventory_custom.inventory_approval_access,1,1,1,1
+

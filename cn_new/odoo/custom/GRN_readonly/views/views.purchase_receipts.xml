@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="grn_value_payment" model="ir.ui.view">
+        <field name="name">stock.payment.form.purchase</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="odoov13_16.view_picking_form_for_vendor"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='grn_value']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
