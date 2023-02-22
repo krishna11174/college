@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="details" name="studetails">
+        <t t-call="website.layout">
+            <div class="container">
+                <form action="" method='POST'>
+                    <table class="table table-condensed" style="width:60px">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <span>NAME</span>
+                                </th>
+                                <th>
+                                    <span>BRANCH</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="details" t-as="d">
+                                <tr>
+                                    <td>
+                                        <span t-field="d.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="d.branch"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </t>
+    </template>
+</odoo>

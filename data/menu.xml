@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="test_menu" model="website.menu">
+            <field name="name">Student Details</field>
+            <field name="url">/student_details</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">80</field>
+
+        </record>
+         <record id="test_menu2" model="website.menu">
+            <field name="name">LogIn</field>
+            <field name="url">/login</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">81</field>
+
+        </record>
+
+    </data>
+</odoo>
